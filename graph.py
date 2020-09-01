@@ -15,6 +15,9 @@ class Graph:
     def explore(self):
         print("Exploring the graph....\n")
         # FILL IN EXPLORE METHOD BELOW
+        current_room = 'entrance'
+        path_total = 0
+        print(f"\nStarting off at the {current_room}\n")
 
     def print_map(self):
         print("\nMAZE LAYOUT\n")
