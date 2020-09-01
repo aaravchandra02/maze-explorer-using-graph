@@ -18,6 +18,24 @@ class Graph:
         current_room = 'entrance'
         path_total = 0
         print(f"\nStarting off at the {current_room}\n")
+        while (current_room != 'treasure room'):
+            node = self.graph_dict[current_room]
+            # we will show the user all the choices of rooms they can move to and their respective costs - for loop that iterates through the items of the node’s edges and retrieves each connected_room and weight
+            for connected_room, weight in node.edges.items():
+                key = connected_room[0]
+                print(f"enter {key} for {connected_room}: {weight} cost")
+            valid_choices = [room[:1] for room in node.edges.keys()]
+            print(f"\nYou have accumulated: {path_total} cost")
+            choice = input("\nWhich room do you move to? ")
+            if choice not in valid_choices:
+                print(f"please select from these letters: {valid_choices}")
+            else:  # valid choice by the user
+                for room in node.edges.keys():
+                    if room.startswith(choice):
+                        current_room = room
+                        path_total += node.edges[room]
+                print(f"\n*** You have chosen: {current_room} ***\n")
+        print(f"Made it to the treasure room with {path_total} cost")
 
     def print_map(self):
         print("\nMAZE LAYOUT\n")
